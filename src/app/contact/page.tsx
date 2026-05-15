@@ -4,20 +4,18 @@ import { useState } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 
-const procedures = [
-  'Dental Veneers',
-  'Dental Implants',
-  'Hair Transplant',
-  'Rhinoplasty',
-  'Breast Surgery',
-  'Body Contouring',
-  'Bariatric Surgery',
-  'Facial Aesthetics',
-  'K-Beauty Treatments',
-  'IVF & Fertility',
-  'Orthopaedics',
-  'Ophthalmology',
-  'Other / Not Sure Yet',
+const inquiryTypes = [
+  'Medical Patient',
+  'Dental Patient',
+  'Investor Relations',
+  'Partner Clinic',
+  'Insurance Company',
+  'Transportation Partner',
+  'Accommodation Partner',
+  'Travel Guide',
+  'Employment',
+  'Affiliate',
+  'Other',
 ]
 
 const countries = [
@@ -27,7 +25,7 @@ const countries = [
 
 export default function ContactPage() {
   const [form, setForm] = useState({
-    name: '', email: '', phone: '', country: '', procedure: '', message: '',
+    name: '', email: '', phone: '', country: '', inquiry: '', message: '',
   })
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
 
@@ -46,7 +44,7 @@ export default function ContactPage() {
       })
       if (!res.ok) throw new Error()
       setStatus('success')
-      setForm({ name: '', email: '', phone: '', country: '', procedure: '', message: '' })
+      setForm({ name: '', email: '', phone: '', country: '', inquiry: '', message: '' })
     } catch {
       setStatus('error')
     }
@@ -62,7 +60,7 @@ export default function ContactPage() {
           <div className="contact-hero-content">
             <div className="contact-eyebrow">Get in Touch</div>
             <h1 className="contact-h1">Begin your <em>journey</em></h1>
-            <p className="contact-sub">Tell us about the treatment you&apos;re interested in. We&apos;ll respond within 30 minutes — in your language, at no obligation.</p>
+            <p className="contact-sub">Tell us how we can help. We respond within 30 minutes — in your language, at no obligation.</p>
           </div>
         </div>
 
@@ -117,16 +115,16 @@ export default function ContactPage() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="procedure">Procedure of Interest <span>*</span></label>
-              <select id="procedure" name="procedure" required value={form.procedure} onChange={handle}>
-                <option value="">Select a procedure</option>
-                {procedures.map(p => <option key={p} value={p}>{p}</option>)}
+              <label htmlFor="inquiry">Type of Inquiry <span>*</span></label>
+              <select id="inquiry" name="inquiry" required value={form.inquiry} onChange={handle}>
+                <option value="">Select inquiry type</option>
+                {inquiryTypes.map(t => <option key={t} value={t}>{t}</option>)}
               </select>
             </div>
 
             <div className="form-group">
-              <label htmlFor="message">Additional Information</label>
-              <textarea id="message" name="message" rows={5} placeholder="Tell us anything else that would help us assist you — timeline, budget range, previous consultations, etc." value={form.message} onChange={handle} />
+              <label htmlFor="message">Message</label>
+              <textarea id="message" name="message" rows={5} placeholder="Tell us how we can help — the more detail you share, the better we can assist you." value={form.message} onChange={handle} />
             </div>
 
             <button type="submit" className="form-submit" disabled={status === 'sending'}>
