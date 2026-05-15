@@ -60,7 +60,7 @@ export default function ContactPage() {
           <div className="contact-hero-content">
             <div className="contact-eyebrow">Get in Touch</div>
             <h1 className="contact-h1">Begin your <em>journey</em></h1>
-            <p className="contact-sub">Tell us how we can help. We respond within 30 minutes — in your language, at no obligation.</p>
+            <p className="contact-sub">Tell us how we can help — in your language, at no obligation.</p>
           </div>
         </div>
 
@@ -133,7 +133,7 @@ export default function ContactPage() {
 
             {status === 'success' && (
               <div className="form-success">
-                ✓ &nbsp;Your enquiry has been received. We&apos;ll be in touch within 30 minutes.
+                ✓ &nbsp;Your enquiry has been received.
               </div>
             )}
             {status === 'error' && (
